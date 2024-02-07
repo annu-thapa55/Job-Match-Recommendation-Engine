@@ -1,78 +1,78 @@
-import os
-import psutil
 import pandas as pd
 
 class File:
-    #constructor
-    def __init__(self, path_file):
-        self.path_file = path_file
-        self.threshold_percentage = 0.3  # Default threshold percentage
 
-    def set_threshold_percentage(self, threshold_percentage):
-        """Set the threshold percentage."""
-        if 0 < threshold_percentage <= 1:  # Ensure threshold percentage is between 0 and 1
-            self.threshold_percentage = threshold_percentage
-        else:
-            raise ValueError("Threshold percentage should be between 0 and 1.")
+    """
+    A class to handle file operations such as reading and cleansing CSV files.
+    
+    Attributes:
+    - path_file (str): The path to the CSV file.
+    """
 
-    def check_threshold(self):
-        """Checks if the size of the file is within the threshold or not"""
-        total_memory_gb = psutil.virtual_memory().total / (1024 * 1024 * 1024)
-        #print(f"total_memory_gb: {total_memory_gb:.2f} GB")
-       
-        file_size_gb = self.check_file_size()
-        #print(f"File Size: {file_size_gb:.2f} GB")
+    def __init__(self,path_file:str):
+        """
+        Constructor for class File.
         
-        if (file_size_gb <= self.threshold_percentage *  total_memory_gb):
-            return True
-        else:
-            return False
-    
-    #function to check the size of file.
-    def check_file_size(self):
-        """Check the size of the file in GB."""
-        file_size_gb = os.path.getsize(self.path_file) / (1024 * 1024 * 1024)
-        return file_size_gb
-    
-
-
-    #function for data wrangling
-    def  cleanse_dataset(self, data_set:pd.DataFrame) -> pd.DataFrame:
-
+        Parameters:
+        - path_file (str):  the path to the CSV file.
+        """
+        self.path_file = path_file
+        
+ 
+    @staticmethod
+    def  cleanse_dataset(data_set:pd.DataFrame) -> pd.DataFrame:
+        """
+        Static method for data wrangling.
+        
+        Cleans the dataset by removing duplicates and null values.
+        
+        Parameters:
+        - data_set (pd.DataFrame): The dataset of type DataFrame to be cleansed.
+        
+        Returns:
+        - pd.DataFrame: The cleansed dataset of type DataFrame.
+        """
         #remove duplicates and null values
         data_set = data_set.drop_duplicates().dropna()
         return data_set
 
-    #function to read csv files
-    def read_file(self):
-        """Load the file if its size is within the calculated threshold."""
+
+    def read_file(self) -> pd.DataFrame:
+        """
+        Function to read and cleanse CSV files.
         
+        Loads the CSV file and performs data cleansing if no errors occur.
+        
+        Returns:
+        - pd.DataFrame or None: The cleansed dataset if successful, else None.
+        """
         try:
-            within_threshold = self.check_threshold() 
-            if(within_threshold):
-                file = pd.read_csv(self.path_file)     
-        
-            else:
-                print("File size exceeds the threshold. File not loaded.")
-                        
+            # Attempt to read the CSV file
+            file = pd.read_csv(self.path_file)
+
         except FileNotFoundError as er:
-            print(F"Error: {er.strerror}. Please ensure the csv files exist.")
-            return
+            # Handle FileNotFoundError
+            raise ValueError(F"Error: {er.strerror}. Please ensure the CSV file exists.")
+        
         except pd.errors.EmptyDataError:
-            print("Error: csv files are empty.")
-            return
+            # Handle EmptyDataError
+            raise ValueError("Error: CSV file is empty.")
+          
+        
         except pd.errors.ParserError:
-            print("Error: Failed to parse csv files. Please check the file format")
-            return
+            # Handle ParserError
+            raise ValueError("Error: Failed to parse CSV file. Please check the file format.")
+        
         except Exception as ex:
-            print(F" An unexpected error occured: {str(ex)}")
-            return
+            # Handle other unexpected errors
+            raise ValueError(F"An unexpected error occurred: {str(ex)}")
             
-        # cleanse dataset 
+        # Cleanse the dataset
         file = self.cleanse_dataset(file)
 
-        #return clean datasets
-        return within_threshold, file
+        # Return the cleansed dataset
+        return file
+
    
 
 
