@@ -40,7 +40,7 @@ To ensure that the program can handle large CSV files, the program performs job 
 ### Installation 
 1. Clone the repo if you have git.
 ```
-git clone https://github.com/annu-thapa55/AI-Based-Calanus-Detection-and-Measurement.git
+git clone https://github.com/annu-thapa55/Job-Match-Recommendation-Engine.git
 ```
 Or press Code➝Download ZIP.
 
@@ -54,24 +54,20 @@ pip install -r requirements.txt
 ### Starting the Application
 There are multiple ways of starting the application.
 #### With RUN.cmd Script
-1. If you have Windows, and your security settings permit it, you can double-click the provided RUN.cmd file to open the application.
-
+1. If you have Windows, and your security settings permit it, you can double-click the provided RUN.cmd file to run the main.py and all the test case files. 
 #### With Command Line
 1. Open the command line interface.
-2. Navigate to the folder containing the app.py file.
+2. Navigate to the folder containing the main.py file.
 ```
 cd PATH_TO_PROJECT
 ```
 3. Enter the following command:
 ```
-python app.py
-```
-4. Open your browser and go to the localhost URL for the web app as specified below:
-```
-http://127.0.0.1:5000
+python main.py
 ```
 
 ### Output
+The program prints the output as the job recommendations. For each job seeker, the matched jobs and relevant information are listed. The entire output is sorted first by jobseeker ID and then by the percentage of matching skills in descending order. As a result, jobs with the highest percentage of matching skills are listed first. If two jobs have the same matching skill percentage, they are sorted by job ID in ascending order.
 
 ### Evaluation
 
