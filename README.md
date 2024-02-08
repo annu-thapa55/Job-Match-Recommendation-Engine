@@ -44,15 +44,23 @@ git clone https://github.com/annu-thapa55/Job-Match-Recommendation-Engine.git
 ```
 Or press Code➝Download ZIP.
 
-2. You can create a separate Python virtual environment to isolate and decouple Python installs and associated pip packages. For that, create a folder and run the following commands:
+2. You can create a separate Python virtual environment to isolate and decouple Python installs and associated pip packages. For that, create a folder (YOUR-PROJECT-FOLDER) and run the following commands:
 ```
 pip install virtualenv 
 python -m venv NAME-OF-YOUR-VIRTUAL-ENVIRONMENT
+```
+3. Run the following command (from the path of PROJECT-FOLDER) to install all the necessary packages. 
+```
 pip install -r requirements.txt
 ```
-3. Unzip and copy the folder "Job-Match-Recommendation-Engine-main" to the folder containing the virtual environment folder (NAME-OF-YOUR-VIRTUAL-ENVIRONMENT). Cut and paste the requirements.txt in "Job-Match-Recommendation-Engine-main". Then run
+4. Folder structure should be:
 ```
-pip install -r requirements.txt
+|----->YOUR-PROJECT-FOLDER
+      |----->NAME-OF-YOUR-VIRTUAL-ENVIRONMENT
+            |----->Include
+            |----->.....
+      |----->requirements.txt
+      |----->Job-Match-Recommendation-Engine-main
 ``` 
 ## Usage
 ### Starting the Script
