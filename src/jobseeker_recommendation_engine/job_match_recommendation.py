@@ -1,8 +1,14 @@
+# typing module for type hints
 from typing import List, Dict
+# pandas library for data manipulation and analysis
 import pandas as pd
+# multiprocessing module for parallel processing
 import multiprocessing as mp
+# custom File class for reading files
 from ..file_reader.read_files import File
+# custom RecommendationEngine class for inheritance 
 from ..recommendation_engine.recommendation import RecommendationEngine
+
 
 class JobMatchRecommendationEngine(RecommendationEngine):
     """
@@ -25,6 +31,7 @@ class JobMatchRecommendationEngine(RecommendationEngine):
         self.path_file_jobseeker = path_file_jobseeker
 
     
+
     def calculate_total_size_files(self) -> float:
         """
         Function for calculating the total size of the job and job seeker files in Giga Byte.
@@ -50,7 +57,9 @@ class JobMatchRecommendationEngine(RecommendationEngine):
         except Exception as ex:
             # Handling unexpected errors
             raise Exception(f"An unexpected error occurred while calculating total file size: {str(ex)}")
-        
+
+
+
     def sequential_processing(self) -> List[Dict]:
         """
         Function for performing sequential processing to match job seekers with available jobs,specifically 
@@ -106,6 +115,8 @@ class JobMatchRecommendationEngine(RecommendationEngine):
         # Returning matched jobs as recommendations
         return recommendations
     
+
+
     def get_pool_size(self) -> int:
         """
         Function for determining the optimal number of CPU cores to allocate for multiprocessing.
@@ -130,6 +141,7 @@ class JobMatchRecommendationEngine(RecommendationEngine):
         except Exception as ex:
             # Handling unexpected errors
             raise ValueError("An error occurred while calculating the pool size:", str(ex))  
+
 
 
     def process_job_chunk(self, job_chunk: pd.DataFrame, jobseeker_row: pd.DataFrame) -> List[Dict]:
@@ -178,7 +190,8 @@ class JobMatchRecommendationEngine(RecommendationEngine):
         except Exception as ex:
             # Handling unexpected error
             raise ValueError("An unexpected error occurred while processing job chunk:", str(ex))
-            
+
+
 
     def parallel_processing(self, jobseeker_chunk_size=1000, job_chunk_size=1000) -> List[Dict]:
         """
@@ -229,6 +242,7 @@ class JobMatchRecommendationEngine(RecommendationEngine):
             raise ValueError(f"An unexpected error occurred during parallel processing: {ex}")
 
 
+
     def generate_recommendations(self) -> List[Dict]:
         """
         Function for generating recommendations based on the size of files.
@@ -259,6 +273,7 @@ class JobMatchRecommendationEngine(RecommendationEngine):
         # Handling unexpected errors
         except Exception as ex:
             raise ValueError(f"An unexpected error occurred: {str(ex)}")
+
 
           
     def sort_recommendations(self, recommendations: List[Dict]) -> pd.DataFrame:

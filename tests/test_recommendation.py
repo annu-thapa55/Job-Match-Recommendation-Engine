@@ -1,6 +1,8 @@
+# unittest module for writing and running tests
 import unittest
+# patch function from unittest.mock module for mocking objects during testing
 from unittest.mock import patch
-from unittest.mock import MagicMock, patch
+# custom RecommendationEngine class for testing its functionalities
 from src.recommendation_engine.recommendation import RecommendationEngine
 
 
@@ -11,6 +13,8 @@ class TestRecommendationEngine(unittest.TestCase):
     This test suite class contains individual test functions for various functionalities of the
     RecommendationEngine class to ensure its proper functioning under different scenarios and conditions..
     """
+
+    # Patching the abstract methods of the RecommendationEngine class for testing its concrete methods.
     @patch.multiple(RecommendationEngine, __abstractmethods__=set())
     def setUp(self):
         """
@@ -21,6 +25,8 @@ class TestRecommendationEngine(unittest.TestCase):
         """
         self.engine = RecommendationEngine()
 
+
+
     def test_set_threshold_parallel_processing_valid(self):
         """
         Function for testing setting a valid threshold for parallel processing.
@@ -29,6 +35,8 @@ class TestRecommendationEngine(unittest.TestCase):
         """
         self.engine.set_threshold_parallel_processing(7.5)
         self.assertEqual(self.engine.threshold_parallel_processing, 7.5)
+
+
 
     def test_set_threshold_parallel_processing_invalid(self):
         """
@@ -44,6 +52,8 @@ class TestRecommendationEngine(unittest.TestCase):
         with self.assertRaises(ValueError):
             self.engine.set_threshold_parallel_processing(3.5)
 
+
+
     def test_set_threshold_parallel_processing_invalid_type(self):
         """
         Function for testing setting an invalid type for threshold for parallel processing.
@@ -54,6 +64,8 @@ class TestRecommendationEngine(unittest.TestCase):
         #Setting invalid input type i.e. string 
         with self.assertRaises(TypeError):
             self.engine.set_threshold_parallel_processing("invalid")
+
+
 
     @patch("os.path.getsize")
     def test_calculate_file_size_existing_file(self, mock_getsize):
@@ -67,6 +79,8 @@ class TestRecommendationEngine(unittest.TestCase):
         file_size = self.engine.calculate_file_size("test_file.csv")
         self.assertEqual(file_size, 1024)
 
+
+
     @patch("os.path.getsize")
     def test_calculate_file_size_non_existing_file(self, mock_getsize):
         """
@@ -78,6 +92,8 @@ class TestRecommendationEngine(unittest.TestCase):
         mock_getsize.side_effect = FileNotFoundError
         with self.assertRaises(FileNotFoundError):
             self.engine.calculate_file_size("non_existing_file.csv")
+
+            
 
     def test_calculate_matching_skills(self):
         """
