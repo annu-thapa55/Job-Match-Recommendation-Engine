@@ -1,5 +1,8 @@
+# ABC (Abstract Base Class) and abstractmethod from the abc module
 from abc import ABC, abstractmethod
+# os module for operating system functionalities
 import os
+
 
 class RecommendationEngine(ABC):
     """
@@ -11,6 +14,7 @@ class RecommendationEngine(ABC):
                                              two CSV files is greater than the threshold. 
     """
     threshold_parallel_processing = 5.00  
+    
 
     def set_threshold_parallel_processing(self, threshold_parallel_processing: float) -> None:
         """
@@ -57,6 +61,7 @@ class RecommendationEngine(ABC):
             raise Exception(f"An unexpected error occurred while calculating file size: {str(ex)}")
     
 
+
     @staticmethod
     def calculate_matching_skills(skills_required: str, set_skills_present: str) -> tuple:
         """
@@ -94,12 +99,14 @@ class RecommendationEngine(ABC):
             raise Exception(f"Error calculating matching skills: {str(ex)}")
 
     
+
     @abstractmethod
     def generate_recommendations():
         """
         Abstract method for generating recommendations based on the implementation.
         """
         pass
+
 
     @abstractmethod
     def sort_recommendations(self, recommendations: list) -> list:

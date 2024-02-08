@@ -1,6 +1,10 @@
+# os module for interacting with the operating system
 import os
+# pandas library for working with structured data
 import pandas as pd
+# unittest module for writing and running tests
 import unittest
+# custom File class for reading files
 from src.file_reader.read_files import File
 
 
@@ -28,6 +32,8 @@ class TestFileClass(unittest.TestCase):
         }
         pd.DataFrame(self.sample_data).to_csv(self.path_test_file, index=False)
         
+    
+    
     def tearDown(self):
         """
         Function for cleaning up after performing each test case.
@@ -36,6 +42,8 @@ class TestFileClass(unittest.TestCase):
         """
         os.remove(self.path_test_file)
 
+    
+    
     def test_read_file_success(self):
         """
         Function for testing reading a valid CSV file functionality.
@@ -49,6 +57,8 @@ class TestFileClass(unittest.TestCase):
         self.assertIsInstance(result, pd.DataFrame)
         self.assertEqual(len(result), len(self.sample_data['A']))
 
+    
+    
     def test_read_file_nonexistent_file(self):
         """
         Function for testing reading a non-existent file.
@@ -60,6 +70,8 @@ class TestFileClass(unittest.TestCase):
         file_handler = File('non_existent_file.csv')
         with self.assertRaises(ValueError):
             file_handler.read_file()
+    
+    
     
     def test_read_file_empty_file(self):
         """
@@ -78,6 +90,8 @@ class TestFileClass(unittest.TestCase):
         # Removing empty file
         os.remove(empty_file_path)  
     
+    
+    
     def test_cleanse_dataset(self):
         """
         Function for testing cleansing a DataFrame functionality.
@@ -94,6 +108,7 @@ class TestFileClass(unittest.TestCase):
         cleansed_df = File.cleanse_dataset(df)
         # Checking for removal of duplicates and null values
         self.assertEqual(len(cleansed_df), 3)  
+
 
 if __name__ == '__main__':
     unittest.main()

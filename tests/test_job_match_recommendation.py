@@ -1,9 +1,16 @@
+# csv module for reading and writing CSV files
 import csv
+# unittest module for writing and running unit tests
 import unittest
+# pandas module for data manipulation and analysis
 import pandas as pd
+# os module for operating system functionalities
 import os
+# multiprocessing module for parallel processing
 import multiprocessing as mp
+# patch function from unittest.mock module for mocking objects during testing
 from unittest.mock import patch
+# custom JobMatchRecommendationEngine class for testing its functions
 from src.jobseeker_recommendation_engine.job_match_recommendation import JobMatchRecommendationEngine
 
 
@@ -67,6 +74,7 @@ class TestJobMatchRecommendationEngineClass(unittest.TestCase):
         os.remove(self.jobseeker_file_path)
 
 
+
     @patch("os.path.getsize")
     def test_calculate_total_size_files(self, mock_getsize):
         """
@@ -80,6 +88,7 @@ class TestJobMatchRecommendationEngineClass(unittest.TestCase):
         total_size = engine.calculate_total_size_files()
         # Converting bytes to GB for comparison
         self.assertAlmostEqual(round(total_size,2), round(0.0029296875,2))  
+
 
 
     def test_sequential_processing(self):
@@ -105,6 +114,8 @@ class TestJobMatchRecommendationEngineClass(unittest.TestCase):
         self.assertEqual(recommendations[0]['matching_skill_count'], 1)  # Number of matching skills
         self.assertAlmostEqual(recommendations[0]['matching_skill_percent'], 50.0)  # Matching skill percentage
 
+
+
     def test_get_pool_size_valid(self):
         """
         Function for testing the pool size calculation with valid CPU count.
@@ -124,6 +135,8 @@ class TestJobMatchRecommendationEngineClass(unittest.TestCase):
         # Checking whether the actual pool size matches the expected pool size or not
         self.assertEqual(actual_pool_size, expected_pool_size)
 
+
+
     def test_get_pool_size_default(self):
         """
         Function for testing the pool size calculation with invalid CPU count.
@@ -137,6 +150,7 @@ class TestJobMatchRecommendationEngineClass(unittest.TestCase):
         with patch('multiprocessing.cpu_count', return_value=0):
             # Checking if the pool size is 1
             self.assertEqual(engine.get_pool_size(), 1)
+
 
 
     def test_parallel_processing(self):
@@ -166,6 +180,7 @@ class TestJobMatchRecommendationEngineClass(unittest.TestCase):
             self.assertTrue(all(key in recommendation for key in expected_keys))
 
 
+
     def test_generate_recommendations(self):
         """
         Function for testing generation of recommendations.
@@ -190,6 +205,7 @@ class TestJobMatchRecommendationEngineClass(unittest.TestCase):
         expected_keys = ['jobseeker_id', 'jobseeker_name', 'job_id', 'job_title', 'matching_skill_count', 'matching_skill_percent']
         for recommendation in recommendations:
             self.assertTrue(all(key in recommendation for key in expected_keys))
+
 
 
     def test_sort_recommendations(self):
@@ -233,6 +249,7 @@ class TestJobMatchRecommendationEngineClass(unittest.TestCase):
         # Asserting that the DataFrame is sorted correctly if two jobs have the same matching skill percentage, they should be sorted by job ID in ascending order.
         expected_order = [1, 2, 1, 2,3]
         self.assertListEqual(list(sorted_recommendations['job_id']), expected_order)
+
 
 if __name__ == '__main__':
     unittest.main()
