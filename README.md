@@ -51,7 +51,7 @@ pip install -r requirements.txt
 ```
 
 ## Usage
-### Starting the Application
+### Starting the Script
 There are multiple ways of starting the application.
 #### With RUN.cmd Script
 1. If you have Windows, and your security settings permit it, you can double-click the provided RUN.cmd file to run the main.py and all the test case files. 
@@ -65,10 +65,19 @@ cd PATH_TO_PROJECT
 ```
 python main.py
 ```
-
+#### Changing CSV files
+Since the program is reading the CSV files for jobs and job seekers from the folder "csv_file", the new files should replace the existing once. However, the name of the files should be the same as the name of the existing files. 
 ### Output
 The program prints the output as the job recommendations. For each job seeker, the matched jobs and relevant information are listed. The entire output is sorted first by jobseeker ID and then by the percentage of matching skills in descending order. As a result, jobs with the highest percentage of matching skills are listed first. If two jobs have the same matching skill percentage, they are sorted by job ID in ascending order.
 
 ### Evaluation
+#### Correctness
+The program provides the correct output by accurately matching the job seekers to jobs based on their skills. Moreover, the entire job recommendations list is sorted as per the aforementioned sorting requirements.
 
+#### Code Quality
+To ensure the quality of the code, the following steps have been taken:
+1. The summaries for each Class and function are provided.
+2. Important statements are commented on properly.
+3. Standard and consistent variable naming conventions have been followed.
+4. Test cases are provided for all classes and functions.
 
