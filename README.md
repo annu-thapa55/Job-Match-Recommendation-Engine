@@ -61,9 +61,15 @@ There are multiple ways of starting the application.
 ```
 cd PATH_TO_PROJECT
 ```
-3. Enter the following command:
+3. Enter the following command to run the main program:
 ```
 python main.py
+```
+3. Enter the following command to run the test case files:
+```
+python -m unittest tests.test_read_files
+python -m unittest tests.test_job_match_recommendation
+python -m unittest tests.test_recommendation
 ```
 #### Changing CSV files
 Since the program is reading the CSV files for jobs and job seekers from the folder "csv_file", the new files should replace the existing once. However, the name of the files should be the same as the name of the existing files. 
