@@ -44,12 +44,16 @@ git clone https://github.com/annu-thapa55/Job-Match-Recommendation-Engine.git
 ```
 Or press Code➝Download ZIP.
 
-2. Navigate to the location of the requirements file on your system and install the requirements.
+2. You can create a separate Python virtual environment to isolate and decouple Python installs and associated pip packages. For that, create a folder and run the following commands:
 ```
-cd PATH_TO_PROJECT
+pip install virtualenv 
+python -m venv NAME-OF-YOUR-VIRTUAL-ENVIRONMENT
 pip install -r requirements.txt
 ```
-
+3. Unzip and copy the folder "Job-Match-Recommendation-Engine-main" to the folder containing the virtual environment folder (NAME-OF-YOUR-VIRTUAL-ENVIRONMENT). Cut and paste the requirements.txt in "Job-Match-Recommendation-Engine-main". Then run
+```
+pip install -r requirements.txt
+``` 
 ## Usage
 ### Starting the Script
 There are multiple ways of starting the application.
@@ -65,7 +69,7 @@ cd PATH_TO_PROJECT
 ```
 python main.py
 ```
-3. Enter the following command to run the test case files:
+3. Enter the following commands to run the test case files:
 ```
 python -m unittest tests.test_read_files
 python -m unittest tests.test_job_match_recommendation
