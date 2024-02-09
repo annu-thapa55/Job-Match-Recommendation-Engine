@@ -116,5 +116,5 @@ The program is designed to handle both small and large inputs. For that, sequent
 
 In addition, the pool size (number of worker processes) in parallel processing is determined dynamically based on the available CPU processor. Equally important, the pandas's data frame is used for manipulating the contents of CSV files, which further guarantees the ability of the program to handle large inputs. 
 
-### Tests: Is your code covered by automated tests?
+### Tests: Is the code covered by automated tests?
 Python unittest module has been deployed to create automated test cases to guarantee the robustness of the program against corner cases.  
