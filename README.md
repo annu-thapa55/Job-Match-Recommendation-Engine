@@ -90,10 +90,10 @@ Since the program is reading the CSV files for jobs and job seekers from the fol
 The program prints the output as the job recommendations. For each job seeker, the matched jobs and relevant information are listed. The entire output is sorted first by jobseeker ID and then by the percentage of matching skills in descending order. As a result, jobs with the highest percentage of matching skills are listed first. If two jobs have the same matching skill percentage, they are sorted by job ID in ascending order.
 
 ## Evaluation
-#### Correctness: Does the program correctly match job seekers to jobs based on their skills?
+### Correctness: Does the program correctly match job seekers to jobs based on their skills?
 The program provides the correct output by accurately matching the job seekers to jobs based on their skills. Moreover, the entire job recommendations list is sorted as per the aforementioned sorting requirements.
 
-#### Code Quality: Is the code easy to understand and maintain?
+### Code Quality: Is the code easy to understand and maintain?
 To ensure code quality, the following measures have been implemented:
 1. The summaries for each Class and function and comments on important statements are provided to make the code easy to comprehend. 
 2. Standard and consistent variable naming conventions have been followed.
