@@ -9,7 +9,7 @@ class RecommendationEngine(ABC):
     An abstract base class for recommendation engines.
     
     Attributes:
-    - threshold_parallel_processing(float): Threshold for parallel processing in MB. Default is 5.00 MB.
+    - threshold_parallel_processing(float): Threshold for parallel processing in MB. Default is 5.00 GB.
                                              The main intention is to activate multiprocessing if the total size of 
                                              two CSV files is greater than the threshold. 
     """
@@ -20,7 +20,7 @@ class RecommendationEngine(ABC):
         """
         Function for setting the threshold for parallel processing.
 
-        It allows to change the threshold within 5.00 to 10.00 MB.
+        It allows to change the threshold within 5.00 to 10.00 GB.
         
         Parameters:
         - threshold_parallel_processing(float): Threshold for parallel processing in MB.
