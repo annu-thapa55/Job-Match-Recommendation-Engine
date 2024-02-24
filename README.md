@@ -112,7 +112,7 @@ To ensure code quality, the following measures have been implemented:
  5. Dependency Inversion Principle (D): To implement this principle for achieving a decoupled and maintainable codebase, abstraction instead of concrete implementations is implemented in the program.
 
 ### Efficiency: How well does the program handle large inputs?
-The program is designed to handle both small and large inputs. For that, sequential processing is activated for the small input CSV files whereas multiprocessing is activated for the CSV files of large size. The decision on which processing to conduct depends on the threshold for parallel processing. This threshold is set to a default value of 5 MB, meaning that parallel processing is employed if the total size of two input files is greater than 5 MB. This threshold can also be set by the user within the range of 5MB to 10 MB. 
+The program is designed to handle both small and large inputs. For that, sequential processing is activated for the small input CSV files whereas multiprocessing is activated for the CSV files of large size. The decision on which processing to conduct depends on the threshold for parallel processing. This threshold is set to a default value of 5 GB, meaning that parallel processing is employed if the total size of two input files is greater than 5 GB. This threshold can also be set by the user within the range of 5GB to 10 GB. 
 
 In addition, the pool size (number of worker processes) in parallel processing is determined dynamically based on the available CPU processor. Equally important, the pandas's data frame is used for manipulating the contents of CSV files, which further guarantees the ability of the program to handle large inputs. 
 
